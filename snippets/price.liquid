@@ -100,8 +100,15 @@
       <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
       <span class="price-item price-item--sale price-item--last">
         {{ money_price }}
+
+        {% if compare_at_price > price %}
+          {% assign discount_rate = compare_at_price | minus: price | times: 100 | divided_by: compare_at_price | round %}
+          <small>[{{ discount_rate }}%OFF]</small>
+        {% endif %}
+
       </span>
     </div>
+
     <small class="unit-price caption{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
       <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
       <span class="price-item price-item--last">

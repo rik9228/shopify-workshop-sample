@@ -79,6 +79,11 @@
         {% render 'product-media-gallery', variant_images: variant_images %}
       </div>
       <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+
+        {% for variant in product.variants %}
+          品番：{{ variant.barcode }} <br/>
+        {% endfor %}
+
         <section
           id="ProductInfo-{{ section.id }}"
           class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
@@ -196,6 +201,15 @@
                   {%- endif -%}
                 </p>
               {%- when 'description' -%}
+
+                {% if product.compare_at_price > product.price %}
+                  <p>セール中！</p>
+              {% endif %}
+
+                {% if product.available %}
+                    <p class="product__description-caution">購入可能です</p>
+                {% endif %}
+
                 {%- if product.description != blank -%}
                   <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
                     {{ product.description }}

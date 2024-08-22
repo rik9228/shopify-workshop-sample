@@ -95,6 +95,10 @@
       </facet-filters-form>
     {%- endif -%}
 
+    <p class="collection-hero__count-text">
+      {{ collection.all_products_count }} アイテム
+    </p>
+
     <div class="{% if section.settings.filter_type == 'vertical' %} facets-vertical page-width{% endif %}">
       {{ 'component-facets.css' | asset_url | stylesheet_tag }}
       <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>

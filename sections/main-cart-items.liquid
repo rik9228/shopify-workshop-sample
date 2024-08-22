@@ -33,6 +33,10 @@
         {{- 'general.continue_shopping' | t -}}
       </a>
     </div>
+    
+    {% if cart.item_count > 0 %}
+      <p class="cart__notation-text">カートの中に{{ cart.item_count }}個の商品があります</p>
+    {% endif %}
 
     <div class="cart__warnings">
       <h1 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h1>

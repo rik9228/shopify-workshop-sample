@@ -287,6 +287,16 @@
               {% endif %}
             {%- endif -%}
           </div>
+          
+          {% if card_product.tags %}
+            <ul class="product__tag-list">
+              {%- for tag in card_product.tags -%}
+                <li class="product__tag-item">
+                  <span>{{ tag }}</span>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
         </div>
         {% assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id %}
         {% if quick_add == 'standard' %}
